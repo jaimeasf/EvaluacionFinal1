@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 // Función para calcular el factorial de un número
 unsigned long long factorial(int n) {
@@ -8,8 +9,6 @@ unsigned long long factorial(int n) {
     }
     return fact;
 }
-
-
 
 // Función para calcular el enésimo número de la secuencia de Fibonacci
 unsigned long long fibonacci(int n) {
@@ -30,6 +29,21 @@ unsigned long long fibonacci(int n) {
     return fib;
 }
 
+// Función para contar el número de vocales en una cadena de texto
+int contarVocales(const std::string& texto) {
+    int contador = 0;
+    std::string vocales = "aeiouAEIOU";
+
+    for (size_t i = 0; i < texto.length(); ++i) {
+        if (vocales.find(texto[i]) != std::string::npos) {
+            contador++;
+        }
+    }
+
+    return contador;
+}
+
+
 int main() {
     int num;
     std::cout << "Ingrese un numero entero no negativo: ";
@@ -42,14 +56,22 @@ int main() {
     }
 
     // Calcular el factorial y mostrar el resultado
-    unsigned long long result = factorial(num);
-    std::cout << "El factorial de " << num << " es: " << result << std::endl;
-    
-    
+    unsigned long long factResult = factorial(num);
+    std::cout << "El factorial de " << num << " es: " << factResult << std::endl;
+
     // Calcular el número de Fibonacci y mostrar el resultado
     unsigned long long fibResult = fibonacci(num);
     std::cout << "El numero de Fibonacci en la posicion " << num << " es: " << fibResult << std::endl;
 
+    // Solicitar al usuario que ingrese una cadena de texto
+    std::cin.ignore();  // Ignorar el salto de línea anterior
+    std::string texto;
+    std::cout << "Ingrese una cadena de texto: ";
+    std::getline(std::cin, texto);
+
+    // Calcular y mostrar el número de vocales en la cadena
+    int numVocales = contarVocales(texto);
+    std::cout << "El numero de vocales en la cadena es: " << numVocales << std::endl;
 
     return 0;
 }
